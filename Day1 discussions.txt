@@ -1,0 +1,57 @@
+1. Your visualization must include a Python Flask–powered RESTful API, HTML/CSS,
+JavaScript, and at least one database (SQL, MongoDB, SQLite, etc.).
+
+2. Your project should fall into one of the below four tracks:
+○ A custom “creative” D3.js project (i.e., a nonstandard graph or chart)
+○ A combination of web scraping and Leaflet or Plotly
+○ A dashboard page with multiple charts that update from the same data
+○ A “thick” server that performs multiple manipulations on data in a database prior
+to visualization (must be approved)
+
+3. Your project should include at least one JS library that we did not cover.
+
+4. Your project must be powered by a data set with at least 100 records.
+
+5. Your project must include some level of user-driven interaction (e.g., menus,
+dropdowns, textboxes).
+
+6. Your final visualization should ideally include at least three views.
+
+
+App: Python w Flask
+DB: Postgres SQL
+UI: 
+Charting: d3, anime.js
+Dashboard of: 
+	- Pollution #s over Wuhan over time (a.k.a. Is China lying to us?)
+		- https://www.visualcapitalist.com/coronavirus-lockdowns-emissions/
+		- https://earthdata.nasa.gov/
+		- https://aqicn.org/api/
+	- Number of tests given over time plotted against # of confirmed cases?
+		- Statistical regressions/analysis?
+		- https://covidtracking.com/api/us/daily
+		- https://covidtracking.com/api/v1/states/daily.json (TX)
+		- https://txdshs.maps.arcgis.com/apps/opsdashboard/index.html#/ed483ecd702b4298ab01e8b9cafc8b83
+	- Trends 
+		- Google - https://towardsdatascience.com/tracking-coronavirus-engagement-with-google-trends-in-python-5a4b08bc6977
+		- https://trends.google.com/trends/explore?geo=US&q=zoom,Blue%20Jeans,Microsoft%20Teams,Webex,Skype
+			- https://trends.google.com/trends/explore?geo=US&q=toilet%20paper,masks,n95,ibuprofen,hydroxychloroquine
+		- # of searches for "toilet paper" over time - bar chart race
+		- # of changes in crime rate / impact on crime rate
+			- # of domestic abuse cases reported over time 
+			- How has crime changed this year vs. last year?
+				- domestic abuse vs. burglary vs. evictions
+				- Dec - Apr '18/19 vs. '19/20
+				- Compare NYC and Seattle and SF to Dallas?
+				
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
