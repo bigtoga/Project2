@@ -1,6 +1,5 @@
 ### Homework Requirements/Deliverables
 | Step  | √ | Requirement |
-| Step | √ | Requirement |
 | :---: | :---: | :--- 
 | 01 |  | Your visualization must include a Python Flask–powered RESTful API, HTML/CSS,
 JavaScript, and at least one database (SQL, MongoDB, SQLite, etc.).
