@@ -5,7 +5,7 @@
 | 02 | San Fran open data portal | https://datasf.org/opendata/
 | 03 | Texas open data portal | https://data.texas.gov/
 | 04 | Seattle open data portal | https://data.seattle.gov/
-| 05 |  |  
+| 05 | New York open data portal | https://opendata.cityofnewyork.us/
 | 06 |  |  
 | 07 |  |  
 | 08 |  |  
