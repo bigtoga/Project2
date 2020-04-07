@@ -13,23 +13,21 @@
 ### Assignments
 | Item  | Who? | √ | Description |
 | :---: | :---: | :---: | :--- 
-| 01 | Lance |  | San Fran crime - Identify what data points to use, what filters to use, how to access (API, CSV, scrape)
-| 02 | Lance |  | San Fran eviction data
-| 03 | Austin |  | New York crime data
-| 04 | Austin |  | New York eviction data
-| 05 | Scott |  | Seattle crime data
-| 06 | Scott |  | Seattle eviction data
-| 07 | Henry |  | Dallas crime data
-| 08 | Henry |  | Dallas eviction data
-| 09 | Scott |  | Google Trends EDA
-| 10 | Austin |  | Google Trends EDA
-| 11 | Lance |  | Google Trends EDA
-| 12 | Henry |  | Google Trends EDA
-| 13 | Nyarai |  | Google Trends EDA
-| 14 | Lance |  | San Fran - schools closed date, shelter-in-place date
-| 15 | Henry |  | Dallas - schools closed date, shelter-in-place date
-| 16 | Scott |  | Seattle - schools closed date, shelter-in-place date
-| 17 | Austin |  | NYC - schools closed date, shelter-in-place date
-| 18 | Nyarai |  | Postgres SQL ETL, table design?
-| 19 |  |  |  | 
-| 20 |  |  |  | 
+| 1 | Lance |  | San Fran crime - Identify what data points to use, what filters to use, how to access (API, CSV, scrape)
+| 2 | Lance |  | San Fran eviction data
+| 3 | Lance |  | Google Trends EDA
+| 4 | Lance |  | San Fran - schools closed date, shelter-in-place date
+| 1 | Austin |  | New York crime data
+| 2 | Austin |  | New York eviction data
+| 3 | Austin |  | Google Trends EDA
+| 4 | Austin |  | NYC - schools closed date, shelter-in-place date
+| 1 | Scott | √ | Seattle crime data
+| 2 | Scott | √ | Seattle eviction data
+| 3 | Scott | √ | Google Trends EDA
+| 4 | Scott |  | Seattle - schools closed date, shelter-in-place date
+| 1 | Henry |  | Dallas crime data
+| 2 | Henry |  | Dallas eviction data
+| 3 | Henry |  | Google Trends EDA
+| 4 | Henry |  | Dallas - schools closed date, shelter-in-place date
+| 1 | Nyarai |  | Google Trends EDA
+| 2 | Nyarai |  | Postgres SQL ETL, table design?
