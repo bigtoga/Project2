@@ -24,7 +24,7 @@
 | 1 | Scott | √ | Seattle crime data
 | 2 | Scott | √ | Seattle eviction data
 | 3 | Scott | √ | Google Trends EDA
-| 4 | Scott |  | Seattle - schools closed date, shelter-in-place date
+| 4 | Scott | √ | Seattle - schools closed date, shelter-in-place date
 | 1 | Henry |  | Dallas crime data
 | 2 | Henry |  | Dallas eviction data
 | 3 | Henry |  | Google Trends EDA
