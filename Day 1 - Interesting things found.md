@@ -8,5 +8,6 @@
         1. 2. 1. Scroll to the map and press play
     2. 1. Weekly Pneumonia + Flu mortality rates - 2016-2020 - https://www.cdc.gov/flu/weekly/index.htm#ILIActivityMap
         1. 3. 1. 
+    3. 1. This is interesting because, originally, cases were reported to local doctors as "influenze-like illnesses" (ILI). There is already a monitoring organization in place to monitor flu reported cases - they are "first warning" we had for Seattle, NY, etc.
 
 ![Flu & Pneumonia mortality rates](https://www.cdc.gov/flu/weekly/weeklyarchives2019-2020/images/NCHS13_small.gif)
