@@ -11,6 +11,7 @@
 | 08 |  |     - Viz 2
 | 09 |  |     - Viz 3
 | 10 |  | Must use github
+| 11 |  | Can use CSV, but it must first pull from API to create the CSV ("productionalize")
 
 ### From the grading rubric pdf:
 1. All Group members spoke during presentation
