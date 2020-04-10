@@ -1,8 +1,7 @@
 ### Homework Requirements/Deliverables
 | Step  | √ | Requirement |
 | :---: | :---: | :--- 
-| 01 |  | Your visualization must include a Python Flask–powered RESTful API, HTML/CSS,
-JavaScript, and at least one database (SQL, MongoDB, SQLite, etc.).
+| 01 |  | Your visualization must include a Python Flask–powered RESTful API, HTML/CSS, JavaScript, and at least one database (SQL, MongoDB, SQLite, etc.).
 | 02 |  | A dashboard page with multiple charts that update from the same data
 | 03 |  | Your project should include at least one JS library that we did not cover. (AnimeJS)
 | 04 |  | Your project must be powered by a data set with at least 100 records.
