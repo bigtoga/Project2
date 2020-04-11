@@ -4,7 +4,7 @@
 | 01 |  | Your visualization must include a Python Flask–powered RESTful API, HTML/CSS,
 JavaScript, and at least one database (SQL, MongoDB, SQLite, etc.).
 | 02 |  | A dashboard page with multiple charts that update from the same data
-| 03 |  | Your project should include at least one JS library that we did not cover. (AnimeJS)
+| 03 |  | Your project should include at least one JS library that we did not cover. (ZingJS, not AnimeJS)
 | 04 |  | Your project must be powered by a data set with at least 100 records.
 | 05 |  | Your project must include some level of user-driven interaction (e.g., menus, dropdowns, textboxes).
 | 06 |  | final visualization should ideally include at least three views.
