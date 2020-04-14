@@ -24,3 +24,6 @@ JavaScript, and at least one database (SQL, MongoDB, SQLite, etc.).
 8. Slides are clear and maintain audience interest
 9. Successfully deployed project to GitHub or Heroku
 10. Met all project requirements
+
+### Dan's comments 
+"The only formal slide I'd like to see is a architecture map showing how the data moves otherwise, it should just be on your url"
