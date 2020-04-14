@@ -1,8 +1,7 @@
 ### Homework Requirements/Deliverables
 | Step  | √ | Requirement |
 | :---: | :---: | :--- 
-| 01 |  | Your visualization must include a Python Flask–powered RESTful API, HTML/CSS,
-JavaScript, and at least one database (SQL, MongoDB, SQLite, etc.).
+| 01 |  | Your visualization must include a Python Flask–powered RESTful API, HTML/CSS, JavaScript, and at least one database (SQL, MongoDB, SQLite, etc.).
 | 02 |  | A dashboard page with multiple charts that update from the same data
 | 03 |  | Your project should include at least one JS library that we did not cover. (ZingJS, not AnimeJS)
 | 04 |  | Your project must be powered by a data set with at least 100 records.
@@ -12,6 +11,7 @@ JavaScript, and at least one database (SQL, MongoDB, SQLite, etc.).
 | 08 |  |     - Viz 2
 | 09 |  |     - Viz 3
 | 10 |  | Must use github
+| 11 |  | Can use CSV, but it must first pull from API to create the CSV ("productionalize")
 
 ### From the grading rubric pdf:
 1. All Group members spoke during presentation
@@ -27,3 +27,5 @@ JavaScript, and at least one database (SQL, MongoDB, SQLite, etc.).
 
 ### Dan's comments 
 "The only formal slide I'd like to see is a architecture map showing how the data moves otherwise, it should just be on your url"
+=======
+
