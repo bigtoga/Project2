@@ -1,6 +1,26 @@
 // Step 1: Get the data 
-var tableData = data;
-var tblColumns = ["datetime", "city", "state", "country", "shape", "durationMinutes", "comments"]
+// Retrieve data from the CSV file and execute everything below
+var parseTime = d3.timeParse("%Y-%m-%d");
+
+tableData = [];
+d3.csv("final_Chicago_data_total_crime_by_date_and_type.csv").then(function(crimeData, err) {
+	if (err) throw err;
+  
+	// parse data
+	// date,primary_type,crimes_committed
+	crimeData.forEach(function(csvdata) {
+		//csvdata.date = parseTime(csvdata.date),
+		csvdata.date = csvdata.date;
+		csvdata.primary_type = csvdata.primary_type;
+		csvdata.crimes_committed = +csvdata.crimes_committed;
+	});
+
+	tableData = crimeData;
+	
+	console.log(tableData)
+});
+
+tblColumns = ["date", "primary_type", "crimes_committed"];
 
 // Step 2: Create HTML object references
 var tbody = d3.select("tbody");
@@ -8,10 +28,7 @@ var btnSearch = d3.select("#btnSearch");
 var btnReset = d3.select("#btnReset");
 
 var searchDate = d3.select("#searchDate");
-var searchCity = d3.select("#searchCity");
-var searchState = d3.select("#searchState");
-var searchCountry = d3.select("#searchCountry");
-var searchShape = d3.select("#searchShape");
+var searchCrime = d3.select("#searchCrime");
 
 // Step 3: Define an arrow function that builds the HTML table
 // OMG my brain hurts w javascript arrow functions syntax
@@ -27,6 +44,8 @@ var loadTableRows = (whichData) => { // Parameter "whichData" is the data to loo
 		// 2.2: Loop through each column and add it as a new table cell
 		tblColumns.forEach(column => tblRow.append("td").text(dataRow[column]))
 	});
+
+	console.log(tableData);
 }
 
 // Step 4: call the function (default / first page load only)
@@ -45,10 +64,7 @@ btnSearch.on("click", () => {
 	
 	// 1. Get what the user searched for:
     var searchedDate = searchDate.property("value");
-    var searchedCity = searchCity.property("value");
-    var searchedState = searchState.property("value");
-    var searchedCountry = searchCountry.property("value");
-    var searchedShape = searchShape.property("value");
+    var searchedCrime = searchCrime.property("value");
 		
 	if(searchedDate){
 		// 2. Filter the data
@@ -63,12 +79,12 @@ btnSearch.on("click", () => {
 			tbody.html("");
 			
 			// Tell them "No rows match"
-			tbody.append("tr").append("td").text("You are unlucky - no sightings on this date");
+			tbody.append("tr").append("td").text("You are unlucky - no crimes on this date");
 		}
 	}
-	else if(searchedCity) {
+	else if(searchedCrime) {
 		// 2. Filter the data
-		var tableData_Filtered = tableData.filter(tableData => tableData.city === searchedCity);
+		var tableData_Filtered = tableData.filter(tableData => tableData.primary_type === searchedCrime);
 	
 		// 3. Load the new data
 		if(tableData_Filtered.length !== 0) {
@@ -82,64 +98,13 @@ btnSearch.on("click", () => {
 			tbody.append("tr").append("td").text("You are unlucky - no sightings for this city");
 		}
 	}
-	else if(searchedState) {
-		// 2. Filter the data
-		var tableData_Filtered = tableData.filter(tableData => tableData.state === searchedState);
-	
-		// 3. Load the new data
-		if(tableData_Filtered.length !== 0) {
-			loadTableRows(tableData_Filtered);
-		}
-		else {
-			// Clear out the previously loaded HTML:
-			tbody.html("");
-			
-			// Tell them "No rows match"
-			tbody.append("tr").append("td").text("You are unlucky - no sightings for this state");
-		}
-	}
-	else if(searchedCountry) {
-		// 2. Filter the data
-		var tableData_Filtered = tableData.filter(tableData => tableData.country === searchedCountry);
-	
-		// 3. Load the new data
-		if(tableData_Filtered.length !== 0) {
-			loadTableRows(tableData_Filtered);
-		}
-		else {
-			// Clear out the previously loaded HTML:
-			tbody.html("");
-			
-			// Tell them "No rows match"
-			tbody.append("tr").append("td").text("You are unlucky - no sightings for this country");
-		}
-	}
-	else { // searchedShape
-		// 2. Filter the data
-		var tableData_Filtered = tableData.filter(tableData => tableData.shape === searchedShape);
-	
-		// 3. Load the new data
-		if(tableData_Filtered.length !== 0) {
-			loadTableRows(tableData_Filtered);
-		}
-		else {
-			// Clear out the previously loaded HTML:
-			tbody.html("");
-			
-			// Tell them "No rows match"
-			tbody.append("tr").append("td").text("You are unlucky - no sightings for this shape");
-		}
-	}
 })
 
 // Reset button - click 
 btnReset.on("click", () => {
 	// window.location.href = "index.html";
 	document.getElementById("searchDate").value='';
-	document.getElementById("searchCity").value='';
-	document.getElementById("searchState").value='';
-	document.getElementById("searchCountry").value='';
-	document.getElementById("searchShape").value='';
+	document.getElementById("searchCrime").value='';
 	
 	// Load original dataset
 	loadTableRows(tableData);
