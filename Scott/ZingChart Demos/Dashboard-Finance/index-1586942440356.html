@@ -1,0 +1,389 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>ZingChart Demo: Financial Widget Dashboard</title>
+  <script src="https://cdn.zingchart.com/zingchart.min.js"></script>
+  <style>
+    .zc-body {
+      background: #fff;
+    }
+
+    #myChart {
+      margin: 10px 0 20px;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity .3s;
+    }
+
+    #myChart.loaded {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .zc-demo {
+      margin: 0 auto;
+      width: 100%;
+      max-width: 910px;
+    }
+
+    .zc-favorites {
+      z-index: 100;
+      position: absolute;
+      top: 0;
+      left: 0;
+      box-shadow: 3px 3px 3px #333;
+    }
+
+    .zc-favorites-wrap {
+      margin-top: 10px;
+      margin: 0 auto;
+      padding: 10px;
+      min-height: 120px;
+      background: #ebebeb;
+      border: 0;
+    }
+
+    .zc-favorites-headline {
+      font-size: 13px;
+      display: block;
+      margin-bottom: 7px;
+    }
+
+    .zc-favorites-db {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-column-gap: 10px;
+      grid-row-gap: 10px;
+    }
+
+    .zc-favorites-fb-db {
+      float: left;
+    }
+
+    .zc-ref {
+      display: none;
+    }
+  </style>
+</head>
+
+<body class="zc-body">
+
+  <div class="zc-demo">
+
+    <div id="myChart">
+      <a href="https://www.zingchart.com/" rel="noopener" class="zc-ref">Powered by ZingChart</a>
+    </div>
+
+    <div class="zc-favorites-wrap">
+      <strong class="zc-favorites-headline">Favorites (drag from above)</strong>
+      <div id="db" class="zc-favorites-db"></div>
+    </div>
+
+  </div>
+
+  <script>
+    ZC.LICENSE = ["569d52cefae586f634c54f86dc99e6a9", "b55b025e438fa8a98e32482b5f768ff5"];
+    // DEFINE DATA
+    // -----------------------------
+    // Data config
+    var cdata = {
+      backgroundColor: '#ddd #eee',
+      flat: true,
+      graphset: [{
+        backgroundColor: 'none',
+        type: 'null',
+        widgets: [{
+            type: 'exchange',
+            rate: 'EUR/USD',
+            x: 10,
+            y: 10,
+            width: 450,
+            ticks: 100,
+            refresh: 500,
+            colors: [
+              ['#55154D', '#4E0E46'], '#fff', '#ccc'
+            ]
+          },
+          {
+            type: 'exchange',
+            rate: 'USD/CAD',
+            x: 470,
+            y: 10,
+            colors: [
+              ['#56000E', '#5F0017'], '#fff', '#ccc'
+            ]
+          },
+          {
+            type: 'exchange',
+            rate: 'USD/JPY',
+            decimals: 2,
+            x: 700,
+            y: 10,
+            width: 200,
+            height: 200,
+            colors: [
+              ['#014358', '#013D52'], '#fff', '#ccc'
+            ]
+          },
+
+          {
+            type: 'exchange',
+            rate: 'BTC/USD',
+            decimals: 2,
+            x: 10,
+            y: 160,
+            refresh: 200,
+            ticks: 60,
+            colors: [
+              ['#264031', '#243C2E'], '#fff', '#ccc'
+            ]
+          },
+          {
+            type: 'exchange',
+            rate: 'CRUDE OIL WTI',
+            decimals: 2,
+            x: 240,
+            y: 160,
+            colors: [
+              ['#264F14', '#244B13'], '#fff', '#ccc'
+            ]
+          },
+          {
+            type: 'exchange',
+            rate: 'GOLD',
+            decimals: 2,
+            x: 470,
+            y: 160,
+            refresh: 2000,
+            height: 260,
+            colors: [
+              ['#704F00', '#6B4A00'], '#fff', '#ccc'
+            ]
+          },
+
+          {
+            type: 'exchange',
+            rate: 'GBP/USD',
+            x: 10,
+            y: 310,
+            height: 110,
+            colors: [
+              ['#262400', '#242200'], '#fff', '#ccc'
+            ]
+          },
+          {
+            type: 'exchange',
+            rate: 'NZD/USD',
+            x: 240,
+            y: 310,
+            height: 110,
+            colors: [
+              ['#260031', '#24002E'], '#fff', '#ccc'
+            ]
+          },
+          {
+            type: 'exchange',
+            rate: 'USD/CHF',
+            x: 700,
+            y: 220,
+            width: 200,
+            height: 200,
+            colors: [
+              ['#363636', '#333333'], '#fff', '#ccc'
+            ]
+          }
+        ]
+      }]
+    };
+    var cdatafb = {
+      backgroundColor: '#ddd #eee',
+      flat: true,
+      graphset: [{
+        backgroundColor: 'none',
+        type: 'null',
+        widgets: []
+      }]
+    };
+    var SEQ = 0;
+
+    // Main chart render location
+    var chartId = 'myChart';
+
+    // Favorites
+    var fbId = 'fb';
+
+
+    // INIT
+    // -----------------------------
+    // Define Module Location
+    zingchart.MODULESDIR = "https://cdn.zingchart.com/modules/";
+
+    // Append Amazon Script
+    var aws = document.createElement('script');
+    aws.src = 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/374756/widgets.js';
+    document.body.appendChild(aws);
+    aws.addEventListener('load', init);
+
+    // Constantly fetch new data sets
+    window.fetchData = function(rate, callback) {
+      var oRefValues = {
+        'EUR/USD': 1.1143,
+        'USD/JPY': 120.88,
+        'USD/CAD': 1.2219,
+        'BTC/USD': 232.71,
+        'CRUDE OIL WTI': 58.59,
+        'GOLD': 1208.21,
+        'GBP/USD': 1.5520,
+        'NZD/USD': 0.7368,
+        'USD/CHF': 0.9364
+      };
+      var fRefValue = oRefValues[rate],
+        fDiff = fRefValue / 100;
+      oRefValues[rate] = fRefValue + (-fDiff / 2 + fDiff * Math.random());
+      var json = {
+        rate: rate,
+        ts: 100 * Math.round(new Date().getTime() / 100),
+        value: oRefValues[rate]
+      };
+      callback.call(window, JSON.stringify(json));
+    }
+
+
+    // LOAD EVENTS
+    // -----------------------------
+    // Run these after AWS script is init
+    function init() {
+      // Render the main demo
+      zingchart.render({
+        id: chartId,
+        width: '100%',
+        height: 430,
+        output: 'svg',
+        strictmode: true,
+        data: cdata,
+        events: {
+          load: loaded
+        }
+      });
+
+      // Bind 'mousedown' action when you click/drag a chart
+      zingchart.bind(chartId, 'mousedown', md);
+    }
+
+    // CHART RENDERED
+    // -----------------------------
+    // Set CSS class to show chart after render
+    function loaded() {
+      var chart = document.querySelector('#' + chartId);
+      chart.classList.add('loaded');
+    }
+
+
+    // DEFINE 'MOUSE DOWN' FUNCTION
+    // -----------------------------
+    function md(p) {
+      // Early Exit: Element is not a button
+      if (p.ev.button !== 0) return;
+      // Add data
+      var wdata = getData(p, cdata);
+      // Early Exit: No data found
+      if (!wdata) return;
+
+      // Define data for 2nd location
+      cdatafb.graphset[0].widgets = [wdata];
+      p.ev.preventDefault();
+
+      // Add data to Favorites
+      var appendData = '<div id="fb" class="zc-favorites" style="width:' + wdata.width + 'px;height:' + wdata.height + 'px;"></div>';
+      document.body.insertAdjacentHTML('beforeend', appendData);
+
+      setTimeout(function() {
+        // Otherwise, create mouse functions and apply to the chart
+        // ---
+        // Get the Favorites DOM element
+        var fb = document.querySelector('#' + fbId);
+        // Early Exit: Not found
+        if (!fb) return;
+
+        // Position element
+        fb.style.top = (p.ev.clientY - wdata.height / 2) + 'px';
+        fb.style.left = (p.ev.clientX - wdata.width / 2) + 'px';
+
+        // Bind mouse movements
+        document.addEventListener('mousemove', mouseMove);
+        document.addEventListener('mouseup', mouseUp);
+
+        // Render 2nd chart in 'Favorites' DOM element
+        zingchart.render({
+          id: fbId,
+          width: wdata.width,
+          height: wdata.height,
+          output: 'svg',
+          strictmode: true,
+          data: cdatafb
+        });
+      }, 0);
+
+      // MOUSE FNS
+
+      // Mousemove
+      function mouseMove(ev) {
+        ev.preventDefault();
+        var fb = document.querySelector('#' + fbId);
+        var doc = document.documentElement;
+        var body = document.body;
+        var offsetTop = doc.scrollTop ? doc.scrollTop : document.body.scrollTop;
+        fb.style.top = (ev.clientY - wdata.height / 2 + offsetTop) + 'px';
+        fb.style.left = (ev.clientX - wdata.width / 2) + 'px';
+      }
+
+      // Mouseup
+      function mouseUp(ev) {
+        var fb = document.querySelector('#' + fbId);
+        if (fb) {
+          var db = document.querySelector('#db');
+          var dbData = '<div id="fb' + SEQ + '" class="zc-favorites-fb-db"></div>';
+          db.insertAdjacentHTML('beforeend', dbData);
+          zingchart.render({
+            id: fbId + SEQ,
+            width: wdata.width,
+            height: wdata.height,
+            output: 'svg',
+            strictmode: true,
+            data: cdatafb
+          });
+          SEQ++;
+          fb.remove();
+          zingchart.exec(fbId, 'destroy');
+        }
+        document.removeEventListener('mousemove', mouseMove);
+        document.removeEventListener('mouseup', mouseUp);
+      }
+    }
+
+
+    // DEFINE 'GET DATA' FUNCTION
+    // -----------------------------
+    // Get the data from the clicked item
+    function getData(p, data) {
+      if (!data) return;
+      var wdata;
+      for (var w = 0; w < data.graphset[0].widgets.length; w++) {
+        var rate = data.graphset[0].widgets[w].rate;
+        var id = p.id + '-graph-' + p.id + rate.replace(/[^a-zA-Z0-9]/g, '');
+        if (id === p.graphid) {
+          wdata = data.graphset[0].widgets[w];
+          wdata.x = 0;
+          wdata.y = 0;
+          wdata.width = 220;
+          wdata.height = 100;
+        }
+      }
+      return wdata;
+    }
+  </script>
+</body>
+
+</html>
