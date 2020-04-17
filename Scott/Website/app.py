@@ -1,10 +1,12 @@
 #importing dependencies and chicago.py to use getData function
 import chicago
 import sqlite3
-from flask import Flask,render_template
+from flask import Flask, render_template, redirect
 from flask_sqlalchemy import SQLAlchemy
 
-app = Flask(__name__)
+#### Setup Flask ####
+app = Flask(__name__, static_url_path='/static')
+app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
 
 #setting route to chicago database
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///chicago_data.db'
