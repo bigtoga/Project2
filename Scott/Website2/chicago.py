@@ -16,8 +16,7 @@ month = today.strftime("%m")
 day = int(daynum) - 7
 print(f"Day: {day} \nMonth: {month}")
 
-def getData():
-    
+def getData():    
 
     def getRawData(year):
         where_clause = f"Date BETWEEN '{year}-01-01' AND '{year}-{month}-{day}'";
