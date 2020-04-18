@@ -9,3 +9,6 @@ __pycache__/
 # Flask
 instance/
 .webassets-cache
+
+#Jupyter
+.ipynb_checkpoints

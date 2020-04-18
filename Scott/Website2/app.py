@@ -88,8 +88,6 @@ def home():
 
 @app.route("/updateData")
 def getData():
-
-    # Run the data function with error handling for failed data loading
     try:
         chicago.getData()
         print('Updated data loaded successfully')
