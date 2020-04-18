@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <title>COVID-19's Impact on Chicago Crime
+  </title>
+  <meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport' />
+  <script src="https://cdn.zingchart.com/zingchart.min.js"></script>
+</head>
+
+<body class="landing-page sidebar-collapse">
+  <nav class="navbar navbar-transparent navbar-color-on-scroll fixed-top navbar-expand-lg" color-on-scroll="100" id="sectionsNav">
+    <div class="container">
+      <div class="navbar-translate">
+        <a class="navbar-brand" href="index.html">Group 4</a>
+      </div>
+    </div>
+  </nav>
+  <div class="page-header header-filter" data-parallax="true" style="background-image: url('/assets/img/Coronavirus.jpg')">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <h1 class="title">Crime and the Coronavirus</h1>
+          <h4>What has been the impact on overall crime as a result of quarantines? </h4>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <a class="btn btn-lg text-black" style="background-color:#6ba1ff ;" href="/updateData" role="button">Update Data</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="zc-body">
+    <div id="myChart" class="chart--container">
+      <a href="https://www.zingchart.com/" rel="noopener" class="zc-ref">Powered by ZingChart</a>
+    </div>
+  </div>
+
+  <div class="main main-raised">
+    <div class="container">
+      <div class="section text-center">
+        <div class="row">
+          <div class="col-md-8 ml-auto mr-auto">
+            <h2 class="title">Chicago Crime Data - Jan 1 - Apr 10</h2>
+            <p>(2018 - 2020)</p>
+          </div>
+        </div>
+		<!-- Table data -->
+        <div class="features">
+          <div class="row">          
+          <div class="col-md-2">
+            <aside class="filters">
+            <div class="panel panel-default">
+              <div class="panel-heading">Search</div>
+              <div class="panel-body">
+              <form>
+                <div class="form-group">
+                <ul class="list-group">
+                  <li class="filter list-group-item">
+                  <label for="date">By date</label>
+                  <input class="form-control" id="searchDate" type="text"></input>
+                  
+                  <label for="date">By crime/activity</label>
+                  <input class="form-control" id="searchCrime" type="text"></input>
+                  </li>
+                </ul>
+              </div>
+              <button id="btnSearch" type="button" class="btn btn-default">Search</button>
+              <button id="btnReset" type="button" class="btn">Reset</button>
+            </form>
+            </div>
+				</div>
+			  </aside>
+			</div>
+			<div class="col-md-10">
+			  <div id="table-area" class="">
+				<table id="ufo-table" class="table table-striped">
+				  <thead>
+					<tr>
+					  <th class="table-head">Date</th>
+					  <th class="table-head">Crime/Activity</th>
+					  <th class="table-head">Crimes Committed</th>
+					</tr>
+				  </thead>
+				  <tbody></tbody>
+				</table>
+			  </div>
+			</div>
+		  </div>
+	  </div>
+    </div>
+  </div>
+  <footer class="footer footer-default">
+    <div class="container">
+      <nav class="float-left">
+        <ul>
+          <li>
+            Group 4
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </footer>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.15.1/d3.min.js"></script>
+  
+  <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+
+</html>
