@@ -15,10 +15,13 @@ from sqlalchemy import create_engine, inspect
 
 app = Flask(__name__)
 
+#### Setup Flask ####
+app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
+
 #################################################
 # Database Setup
 #################################################
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = 'False'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///chicago_data.db'
 
 engine = create_engine("sqlite:///chicago_data.db")
@@ -35,21 +38,46 @@ inspector = inspect(engine)
 # Collect the names of tables within the database
 tables = inspector.get_table_names()
 for x in tables:
-    print(x["name"])
+    print(x)
 
 # Save references to each table
-# Doesn't work w / out primary keys!
-potato = Base.classes.chicago_data
-aggs_overall = Base.classes.aggs_overall
-aggs_by_date_type = Base.classes.aggs_by_date_type
-dfCSV = Base.classes.dfCSV
-group_type_df = Base.classes.group_type_df
-month_day = Base.classes.month_day
+
+#creates a model of the reflection, allowing for queries to be made (example: crime.query.count())
+class chicago_data(db.Model):
+    __tablename__ = 'chicago_data'
+    __table_args__ = { 'extend_existing': True }
+    index = db.Column(db.Text, primary_key=True)
+
+class aggs_overall(db.Model):
+    __tablename__ = 'aggs_overall'
+    __table_args__ = { 'extend_existing': True }
+    index = db.Column(db.Text, primary_key=True)
+    
+class aggs_by_date_type(db.Model):
+    __tablename__ = 'aggs_by_date_type'
+    __table_args__ = { 'extend_existing': True }
+    date = db.Column(db.Text, primary_key=True)
+
+class dfCSV(db.Model):
+    __tablename__ = 'dfCSV'
+    __table_args__ = { 'extend_existing': True }
+    date = db.Column(db.Text, primary_key=True)
+
+class group_type_df(db.Model):
+    __tablename__ = 'group_type_df'
+    __table_args__ = { 'extend_existing': True }
+    index = db.Column(db.Text, primary_key=True)
+
+class month_day(db.Model):
+    __tablename__ = 'groupby_df'
+    __table_args__ = { 'extend_existing': True }
+    index = db.Column(db.Text, primary_key=True)
+
 
 #home route to hold initial visuals which need to be updated with button press
 @app.route("/")
 def home():
-    print("chicago_data table: ", potato.query.count())
+    print("chicago_data table: ", chicago_data.query.count())
     print("aggs_overall table: ", aggs_overall.query.count())
     print("aggs_by_date_type table: ", aggs_by_date_type.query.count())
     print("dfCSV table: ", dfCSV.query.count())
