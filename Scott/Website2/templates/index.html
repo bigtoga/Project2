@@ -1,0 +1,156 @@
+<!--
+Used this bootstrap theme:
+=========================================================
+Material Kit - v2.0.7
+=========================================================
+
+Product Page: https://www.creative-tim.com/product/material-kit
+Copyright 2020 Creative Tim (https://www.creative-tim.com/)
+
+Coded by Creative Tim
+
+=========================================================
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software. -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
+  <link rel="icon" type="image/png" href="../assets/img/favicon.ico">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <title>COVID-19's Impact on Chicago Crime
+  </title>
+  <meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport' />
+  <!--     Fonts and icons     
+  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />-->
+  <script src="https://d3js.org/d3.v4.min.js"></script>
+  <script src="https://cdn.zingchart.com/zingchart.min.js"></script>
+  <link rel="stylesheet" href="../assets/css/font-awesome.min.css">
+  <link rel="stylesheet" href="../assets/css/zingstyle.css" />
+  <!-- CSS Files -->
+  <link href="../assets/css/material-kit.css?v=2.0.7" rel="stylesheet" />
+  <!-- CSS Just for demo purpose, don't include it in your project -->
+  <link href="../assets/demo/demo.css" rel="stylesheet" />
+</head>
+
+<body class="landing-page sidebar-collapse">
+  <nav class="navbar navbar-transparent navbar-color-on-scroll fixed-top navbar-expand-lg" color-on-scroll="100" id="sectionsNav">
+    <div class="container">
+      <div class="navbar-translate">
+        <a class="navbar-brand" href="index.html">Group 4</a>
+      </div>
+    </div>
+  </nav>
+  <div class="page-header header-filter" data-parallax="true" style="background-image: url('../assets/img/Coronavirus.jpg')">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <h1 class="title">Crime and the Coronavirus</h1>
+          <h4>What has been the impact on overall crime as a result of quarantines? </h4>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <a class="btn btn-lg text-black" style="background-color:#6ba1ff ;" href="/updateData" role="button">Update Data</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="zc-body">
+    <div id="myChart" class="chart--container">
+      <a href="https://www.zingchart.com/" rel="noopener" class="zc-ref">Powered by ZingChart</a>
+    </div>
+  </div>
+
+  <div class="main main-raised">
+    <div class="container">
+      <div class="section text-center">
+        <div class="row">
+          <div class="col-md-8 ml-auto mr-auto">
+            <h2 class="title">Chicago Crime Data - Jan 1 - Apr 10</h2>
+            <p>(2018 - 2020)</p>
+          </div>
+        </div>
+		<!-- Table data -->
+        <div class="features">
+          <div class="row">          
+          <div class="col-md-2">
+            <aside class="filters">
+            <div class="panel panel-default">
+              <div class="panel-heading">Search</div>
+              <div class="panel-body">
+              <form>
+                <div class="form-group">
+                <ul class="list-group">
+                  <li class="filter list-group-item">
+                  <label for="date">By date</label>
+                  <input class="form-control" id="searchDate" type="text"></input>
+                  
+                  <label for="date">By crime/activity</label>
+                  <input class="form-control" id="searchCrime" type="text"></input>
+                  </li>
+                </ul>
+              </div>
+              <button id="btnSearch" type="button" class="btn btn-default">Search</button>
+              <button id="btnReset" type="button" class="btn">Reset</button>
+            </form>
+            </div>
+				</div>
+			  </aside>
+			</div>
+			<div class="col-md-10">
+			  <div id="table-area" class="">
+				<table id="ufo-table" class="table table-striped">
+				  <thead>
+					<tr>
+					  <th class="table-head">Date</th>
+					  <th class="table-head">Crime/Activity</th>
+					  <th class="table-head">Crimes Committed</th>
+					</tr>
+				  </thead>
+				  <tbody></tbody>
+				</table>
+			  </div>
+			</div>
+		  </div>
+	  </div>
+    </div>
+  </div>
+  <footer class="footer footer-default">
+    <div class="container">
+      <nav class="float-left">
+        <ul>
+          <li>
+            Group 4
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </footer>
+  <!--   From the bootstrap theme I used:   -->
+  <script src="../assets/js/core/jquery.min.js" type="text/javascript"></script>
+  <script src="../assets/js/core/popper.min.js" type="text/javascript"></script>
+  <script src="../assets/js/core/bootstrap-material-design.min.js" type="text/javascript"></script>
+  <script src="../assets/js/plugins/moment.min.js"></script>
+  <!--	Plugin for the Datepicker, full documentation here: https://github.com/Eonasdan/bootstrap-datetimepicker -->
+  <script src="../assets/js/plugins/bootstrap-datetimepicker.js" type="text/javascript"></script>
+  <!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
+  <script src="../assets/js/plugins/nouislider.min.js" type="text/javascript"></script>
+
+  <!-- Control Center for Material Kit: parallax effects, scripts for the example pages etc -->
+  <script src="../assets/js/material-kit.js?v=2.0.7" type="text/javascript"></script>
+  
+  <!-- Class activity files -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.15.1/d3.min.js"></script>
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  <script type="text/javascript" src="../dom_zingchart.js"></script>
+  <!-- <script type="text/javascript" src="../type_zingchart.js"></script> -->
+  <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+  <script src="../app.js"></script>
+</body>
+
+</html>

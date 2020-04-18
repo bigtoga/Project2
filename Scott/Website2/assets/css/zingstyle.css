@@ -1,0 +1,15 @@
+.zc-body { background:#fff; }
+
+.chart--container {
+  height: 100%;
+  width: 100%;
+  min-height: 530px;
+}
+
+.zc-ref {
+  display: none;
+}
+
+.container {
+  margin-top: 70px;
+}
